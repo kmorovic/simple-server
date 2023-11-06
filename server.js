@@ -2,7 +2,7 @@ const fs = require("fs");
 const https = require("https");
 
 const options = {
-    key: fs.readFileSync("./cert/key.pem"),
+    key: Buffer.from(process.env.PRIVATE_KEY).toString("utf-8").replaceAll("\\n", "\n"),
     cert: fs.readFileSync("./cert/cert.pem")
 };
 const serverSecure = https.createServer(options);
